@@ -62,14 +62,14 @@ def getAllC():
 def UpdateC(id):
     datosC = request.get_json()
     headers = {"Content-Type": "application/json; charset = utf-8"}
-    url = data["url-ms-backend"] + '/candidatos'+id
+    url = data["url-ms-backend"] + '/candidatos/'+id
     respuesta = requests.put(url, json=datosC, headers=headers)
     return jsonify(respuesta.json())
 
 @app.route("/candidatos/<string:id>",methods=['DELETE'])
 def DeleteC(id):
     headers = {"Content-Type": "application/json; charset = utf-8"}
-    url = data["url-ms-backend"] + '/candidatos'+id
+    url = data["url-ms-backend"] + '/candidatos/'+id
     respuesta = requests.delete(url, headers=headers)
     return jsonify(respuesta.json())
 
