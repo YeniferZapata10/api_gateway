@@ -49,12 +49,12 @@ def before_request_callback():
         if usuario['rol'] is not None:
             permiso = validarPermiso(endpoint, request.method, usuario['rol']['_id'])
             if not permiso:
-                return jsonify({"mensaje":"No tiene permisos para ejecutar esta acción"}), 401
-            else:
-                return jsonify({"mensaje":"Puede ejecutar la acción"}), 200
+                return jsonify({"mensaje":"Permiso denegado"}), 401
+        else:
+            return jsonify({"mensaje":"Permiso denegado"}), 401
 
 def validarPermiso(endpoint, metodo, id_rol):
-    url = data["url-ms-seguridad"]+'validar-permiso/rol/'+id_rol
+    url = data["url-ms-seguridad"]+'/permisos-roles/validar-permiso/rol/'+id_rol
     tienePermiso = False
     headers = {"Content-Type": "application/json; charset = utf-8"}
     body ={
@@ -62,6 +62,7 @@ def validarPermiso(endpoint, metodo, id_rol):
         "metodo": metodo
     }
     respuesta = requests.get(url, json=body, headers=headers)
+    print(respuesta)
     try:
         datos = respuesta.json()
         if "_id" in datos:

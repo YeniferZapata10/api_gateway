@@ -1,6 +1,6 @@
 {
   "url-api": "127.0.0.1",
   "port": 8888,
-  "url-ms-seguridad": "127.0.0.1:8080",
-  "url-ms-backend": "127.0.0.1:1111"
+  "url-ms-seguridad": "http://127.0.0.1:8080",
+  "url-ms-backend": "http://127.0.0.1:1111"
 }
